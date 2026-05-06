@@ -16,10 +16,10 @@ The main programming language i used is for this appliction is Bash scripting
 -Displays a list of task to done
 -has a add, option for adding more items to the list
 -A delete option to remove task which are already done
--a list option to display a list of task yet to be done on the list 
+-a list option to display a list of task yet to be done on the list
 
 ## 📚 What I Learned
-How to structure an application on bash 
+How to structure an application on bash
 and inproving my explotes on Github
 Managing directly from the terminal
 Debugging network errors

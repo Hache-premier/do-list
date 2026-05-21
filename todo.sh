@@ -1,27 +1,44 @@
 #!/bin/bash
 
-if [ "$1" == "add" ] && [ -n "$2" ]; then
+if [ "$1" == "add" ]; then
+  if [ -n "$2" ]; then
     echo "$2" >> tasks.txt
     echo "Task added: $2"
-fi
-    echo " "
-if [[ -f "tasks.txt" ]]; then
-        echo "My To-Do List:"
-        cat -n "tasks.txt"
+  else
+    echo "write a task to be added to the list."
+
 fi
 
-echo ""
+elif [ "$1" == "list" ]; then
+  echo "My to-do list:"
+  if [ -s "tasks.txt" ]; then
+    nl -w2 -s'. ' "tasks.txt"
+  else
+    echo "No task found from your list."
+fi
 
-arg=$2
-
-if [ "$1" == "del" ]; then
-    if sed -n "${arg}p" "tasks.txt" | grep -q .; then
-        sed -i "${arg}d" "tasks.txt"
-        echo -e "\e[32m Task $arg deleted successfully.\e[0m"
+elif [ "$1" == "delete" ]; then
+    if [ -n "$2" ]; then
+      if [[ "$2" =~ ^[0-9]+$ ]]; then
     
-    else
+      total=$(wc -l < "tasks.txt")
+      if [ "$2" -le "$total" ] && [ "$2" -gt 0 ]; then
+        sed -i "${2}d" "tasks.txt"
 
-        echo -e "\e[31m Error: Task number $arg does not exist.\e[0m"
+  echo "task $2 has been deleted."
+  else
+  echo "task number not found."
+  fi
 
-    fi
+else
+  echo "Please enter the task number to be deleted."
+fi
+
+  #Wrong commamd enterd
+  else
+    echo "Usage:"
+    echo "./todo.sh add \"Task name\""
+    echo "./todo.sh list"
+    echo "./todo.sh delete \""number to be deleted on the list"\""
+  fi
 fi

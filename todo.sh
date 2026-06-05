@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ "$1" == "add" ]; then
 
   if [ -n "$2" ]; then

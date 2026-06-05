@@ -1,13 +1,17 @@
-#!/bin/bash
-
 if [ "$1" == "add" ]; then
-  if [ -n "$2" ]; then
-    echo "$2" >> tasks.txt
-    echo "Task added: $2"
-  else
-    echo "write a task to be added to the list."
 
-fi
+  if [ -n "$2" ]; then
+
+    if grep -Fxq "$2" tasks.txt 2>/dev/null; then
+      echo "Task already exists in the list."
+    else
+      echo "$2" >> tasks.txt
+      echo "Task added: $2"
+    fi
+
+  else
+    echo "Write a task to be added to the list."
+  fi
 
 elif [ "$1" == "list" ]; then
   echo "My to-do list:"
